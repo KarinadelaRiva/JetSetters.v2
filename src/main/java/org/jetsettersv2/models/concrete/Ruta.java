@@ -1,5 +1,7 @@
 package org.jetsettersv2.models.concrete;
 
+import org.jetsettersv2.enums.Aeropuerto;
+
 import java.time.Duration;
 
 public class Ruta {
