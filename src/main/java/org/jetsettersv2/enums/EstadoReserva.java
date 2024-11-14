@@ -1,4 +1,4 @@
-package org.jetsettersv2.Enums;
+package org.jetsettersv2.enums;
 
 public enum EstadoReserva {
     PENDIENTE("La reserva fue creada pero no confirmada", 1),
