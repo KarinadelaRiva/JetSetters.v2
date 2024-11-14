@@ -1,4 +1,4 @@
-package org.jetsettersv2.Enums;
+package org.jetsettersv2.enums;
 
 public enum EstadoVuelo {
     PROGRAMADO("Programado"),
