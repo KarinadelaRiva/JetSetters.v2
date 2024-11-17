@@ -1,13 +1,15 @@
 package org.jetsettersv2.models.concrete;
 
+import org.jetsettersv2.utilities.Fecha;
+
 import java.time.LocalDate;
 
 public class Vuelo {
     private String nroVuelo;
     private Avion avion;
     private Ruta ruta;
-    private LocalDate fechaSalida;
-    private LocalDate horaSalida;
+    private Fecha fechaSalida;
+    private Fecha horaSalida;
     private RegistroDeVuelo registroDeVuelo;
 
     // <<<<<<<METODOS IMPRESION>>>>>>>
@@ -40,11 +42,11 @@ public class Vuelo {
         return ruta;
     }
 
-    public LocalDate getFechaSalida() {
+    public Fecha getFechaSalida() {
         return fechaSalida;
     }
 
-    public LocalDate getHoraSalida() {
+    public Fecha getHoraSalida() {
         return horaSalida;
     }
 
@@ -66,11 +68,11 @@ public class Vuelo {
         this.ruta = ruta;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(Fecha fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public void setHoraSalida(LocalDate horaSalida) {
+    public void setHoraSalida(Fecha horaSalida) {
         this.horaSalida = horaSalida;
     }
 
@@ -95,12 +97,12 @@ public class Vuelo {
         return this;
     }
 
-    public Vuelo fechaSalida(LocalDate fechaSalida) {
+    public Vuelo fechaSalida(Fecha fechaSalida) {
         this.fechaSalida = fechaSalida;
         return this;
     }
 
-    public Vuelo horaSalida(LocalDate horaSalida) {
+    public Vuelo horaSalida(Fecha horaSalida) {
         this.horaSalida = horaSalida;
         return this;
     }

@@ -7,6 +7,8 @@ import java.time.temporal.ChronoUnit;
 public class Fecha {
     private LocalDate fecha;
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     // Constructor sin parámetros (fecha actual)
     public Fecha() {
         this.fecha = LocalDate.now();
@@ -18,8 +20,7 @@ public class Fecha {
     }
 
     // Constructor con cadena de texto
-    public Fecha(String fecha, String formato) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+    public Fecha(String fecha) {
         this.fecha = LocalDate.parse(fecha, formatter);
     }
 
@@ -29,8 +30,7 @@ public class Fecha {
     }
 
     // Obtener la fecha en formato de cadena
-    public String obtenerFecha(String formato) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+    public String obtenerFecha() {
         return this.fecha.format(formatter);
     }
 
