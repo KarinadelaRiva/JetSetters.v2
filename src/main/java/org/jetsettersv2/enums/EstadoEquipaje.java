@@ -1,6 +1,7 @@
 package org.jetsettersv2.enums;
 
 package org.jetsettersv2.enums;
+//package org.jetsettersv2.enums;
 
 public enum EstadoEquipaje {
     PERDIDO("Equipaje perdido", 1),
