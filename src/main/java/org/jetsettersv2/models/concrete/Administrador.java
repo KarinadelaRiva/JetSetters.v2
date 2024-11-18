@@ -3,16 +3,18 @@ package org.jetsettersv2.models.concrete;
 import org.jetsettersv2.collections.ArrayListGeneric;
 import org.jetsettersv2.enums.TurnoEmpleado;
 import org.jetsettersv2.exceptions.ElementoNoEncontradoException;
+import org.jetsettersv2.models.abstracts.Empleado;
 import org.jetsettersv2.models.abstracts.PersonalAereo;
+import org.jetsettersv2.utilities.Fecha;
 
 import java.util.List;
 
-public class Administrador extends Empleado{
+public class Administrador extends Empleado {
 
     private TurnoEmpleado turno;
     private ArrayListGeneric<Vuelo> gestionVuelos;
     private ArrayListGeneric<Reserva> gestionReservas;
-    private ArrayListGeneric<Usuario> gestionUsuarios;
+    private ArrayListGeneric<UsuarioCliente> gestionUsuarios;
     private ArrayListGeneric<Pasajero> gestionPasajeros;
 
     public Administrador() {
@@ -56,11 +58,11 @@ public class Administrador extends Empleado{
         return this;
     }
 
-    public ArrayListGeneric<Usuario> getGestionUsuarios() {
+    public ArrayListGeneric<UsuarioCliente> getGestionUsuarios() {
         return gestionUsuarios;
     }
 
-    public Administrador gestionUsuarios(ArrayListGeneric<Usuario> gestionUsuarios) {
+    public Administrador gestionUsuarios(ArrayListGeneric<UsuarioCliente> gestionUsuarios) {
         this.gestionUsuarios = gestionUsuarios;
         return this;
     }
@@ -77,7 +79,7 @@ public class Administrador extends Empleado{
         return gestionReservas.getLista();
     }
 
-    public List<Usuario> verCollectionUsuarios() {
+    public List<UsuarioCliente> verCollectionUsuarios() {
         return gestionUsuarios.getLista();
     }
 
@@ -100,8 +102,8 @@ public class Administrador extends Empleado{
         boolean vueloReprogramado = false;
 
         for (Vuelo vuelo : gestionVuelos.getLista()) {
-            if (vuelo.getFecha().equals(fechaOriginal)) {
-                vuelo.setFecha(nuevaFecha);
+            if (vuelo.getFechaSalida().equals(fechaOriginal)) {
+                vuelo.setFechaSalida(nuevaFecha);
                 vueloReprogramado = true;
             }
         }
@@ -116,30 +118,30 @@ public class Administrador extends Empleado{
 
     // <<<<<<<ASIGNAR TRIPULACION A UN VUELO>>>>>>>
 
-    public void asignarTripulacionVuelo(String idVuelo, PersonalAereo tripulante) throws ElementoNoEncontradoException {
-        RegistroDeVuelo vuelo = null;
-
-        for (RegistroDeVuelo v : gestionVuelos.getLista()) {
-            if (v.getIdRegistroDeVuelo().equals(idVuelo)) {
-                vuelo = v;
-                break;
-            }
-        }
-
-        if (vuelo == null) {
-            throw new ElementoNoEncontradoException("El Vuelo con ID " + idVuelo + " no ha sido encontrado.");
-        }
-
-        // Verifico si el tripulante ya está asignado
-        if (vuelo.getTripulacion().contains(tripulante)) {
-            System.out.println("El tripulante ya está asignado a este vuelo.");
-            return;
-        }
-
-        // Si no esta en el vuelo asigno el tripulante
-        vuelo.getTripulacion().add(tripulante);
-        System.out.println("El tripulante " + tripulante.getNombre() + " ha sido asignado al vuelo con ID " + idVuelo);
-    }
+//    public void asignarTripulacionVuelo(String idVuelo, PersonalAereo tripulante) throws ElementoNoEncontradoException {
+//        RegistroDeVuelo vuelo = null;
+//
+//        for (RegistroDeVuelo v : gestionVuelos.getLista()) {
+//            if (v.getIdRegistroDeVuelo().equals(idVuelo)) {
+//                vuelo = v;
+//                break;
+//            }
+//        }
+//
+//        if (vuelo == null) {
+//            throw new ElementoNoEncontradoException("El Vuelo con ID " + idVuelo + " no ha sido encontrado.");
+//        }
+//
+//        // Verifico si el tripulante ya está asignado
+//        if (vuelo.getTripulacion().contains(tripulante)) {
+//            System.out.println("El tripulante ya está asignado a este vuelo.");
+//            return;
+//        }
+//
+//        // Si no esta en el vuelo asigno el tripulante
+//        vuelo.getTripulacion().add(tripulante);
+//        System.out.println("El tripulante " + tripulante.getNombre() + " ha sido asignado al vuelo con ID " + idVuelo);
+//    }
 
 
 
