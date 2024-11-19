@@ -1,5 +1,7 @@
 package org.jetsettersv2.models.concrete;
 
+import org.jetsettersv2.collections.ArrayListGeneric;
+import org.jetsettersv2.enums.EstadoCheck;
 import org.jetsettersv2.utilities.Fecha;
 
 import java.time.LocalDate;
@@ -11,16 +13,50 @@ public class Vuelo {
     private Fecha fechaSalida;
     private Fecha horaSalida;
     private RegistroDeVuelo registroDeVuelo;
+    private ArrayListGeneric<Reserva> reservas;
+    private ArrayListGeneric<CheckIn> CheckIns;
 
     // <<<<<<<METODOS IMPRESION>>>>>>>
 
-    public void imprimir(){
+    public void imprimirDatosVuelo(){
         System.out.println("Número de vuelo......................: " + this.nroVuelo);
         System.out.println("Avión................................: " + this.avion.getModelo());
         System.out.println("Ruta.................................: ");
         this.ruta.imprimir();
         System.out.println("Fecha de salida......................: " + this.fechaSalida);
         System.out.println("Hora de salida.......................: " + this.horaSalida);
+    }
+
+    public void imprimirReservas(){
+        System.out.println("Reservas.............................: ");
+        for (Reserva reserva : this.reservas) {
+            reserva.mostrar();
+        }
+    }
+
+    /*
+    public void imprimirCheckInsRealizados(){
+        System.out.println("CheckIn Realizados...................: ");
+        for (CheckIn checkIn : this.CheckIns) {
+            if(checkIn.getEstadoCheck().equals(EstadoCheck.REALIZADO)){
+                checkIn.mostrar();
+            }
+        }
+    }
+
+    public void imprimirCheckInsPendientes(){
+        System.out.println("CheckIn Pendientes...................: ");
+        for (CheckIn checkIn : this.CheckIns) {
+            if(checkIn.getEstadoCheck().equals(EstadoCheck.PENDIENTE)){
+                checkIn.mostrar();
+            }
+        }
+    }
+   */
+
+    public void imprimirRegistroDeVuelo(){
+        System.out.println("Registro de vuelo....................: ");
+        //this.registroDeVuelo.mostrar();
     }
 
     // <<<<<<<CONSTRUCTORS>>>>>>>
@@ -54,6 +90,14 @@ public class Vuelo {
         return registroDeVuelo;
     }
 
+    public ArrayListGeneric<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public ArrayListGeneric<CheckIn> getCheckIns() {
+        return CheckIns;
+    }
+
     // <<<<<<<SETTERS>>>>>>>
 
     public void setNroVuelo(String nroVuelo) {
@@ -78,6 +122,14 @@ public class Vuelo {
 
     public void setRegistroDeVuelo(RegistroDeVuelo registroDeVuelo) {
         this.registroDeVuelo = registroDeVuelo;
+    }
+
+    public void setReservas(ArrayListGeneric<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void setCheckIns(ArrayListGeneric<CheckIn> CheckIns) {
+        this.CheckIns = CheckIns;
     }
 
     // <<<<<<<BUILDERS>>>>>>>
@@ -112,6 +164,16 @@ public class Vuelo {
         return this;
     }
 
+    public Vuelo reservas(ArrayListGeneric<Reserva> reservas) {
+        this.reservas = reservas;
+        return this;
+    }
+
+    public Vuelo CheckIns(ArrayListGeneric<CheckIn> CheckIns) {
+        this.CheckIns = CheckIns;
+        return this;
+    }
+
     // <<<<<<<TO STRING>>>>>>>
 
     @Override
@@ -123,6 +185,8 @@ public class Vuelo {
                 ", fechaSalida=" + fechaSalida +
                 ", horaSalida=" + horaSalida +
                 ", registroDeVuelo=" + registroDeVuelo +
+                ", reservas=" + reservas +
+                ", CheckIns=" + CheckIns +
                 '}';
     }
 
