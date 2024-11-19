@@ -1,0 +1,26 @@
+[
+  {
+    "modelo": "Boeing 737",
+    "matricula": "N12345",
+    "capacidadTripulantes": 5,
+    "capacidadPasajeros": 180,
+    "capacidadEquipaje": 5000,
+    "enMantenimiento": false
+  },
+  {
+    "modelo": "Airbus A320",
+    "matricula": "A67890",
+    "capacidadTripulantes": 6,
+    "capacidadPasajeros": 220,
+    "capacidadEquipaje": 5500,
+    "enMantenimiento": true
+  },
+  {
+    "modelo": "Embraer E190",
+    "matricula": "E54321",
+    "capacidadTripulantes": 4,
+    "capacidadPasajeros": 100,
+    "capacidadEquipaje": 3000,
+    "enMantenimiento": false
+  }
+]

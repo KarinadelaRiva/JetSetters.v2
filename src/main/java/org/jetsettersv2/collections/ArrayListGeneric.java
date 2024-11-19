@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ArrayListGeneric<T> {
+public class ArrayListGeneric<T> extends ArrayList<T> {
     private final List<T> lista;
 
     public ArrayListGeneric() {
