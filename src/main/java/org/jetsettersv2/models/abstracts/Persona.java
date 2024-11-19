@@ -1,5 +1,8 @@
 package org.jetsettersv2.models.abstracts;
 
+import org.jetsettersv2.models.concrete.Direccion;
+
+import java.util.Scanner;
 import java.util.UUID;
 
 public abstract class Persona {
@@ -10,8 +13,9 @@ public abstract class Persona {
     private String dni;
     private String pasaporte;
     private String telefono;
-    //<<NECESITO CLASE DIRECCION
-    //private Direccion direccion;
+    private Direccion direccion;
+    private String email;
+    private String contrasenia;
 
 
     public Persona() {
@@ -71,14 +75,14 @@ public abstract class Persona {
         return this;
     }
 
-//    public Direccion getDireccion() {
-//        return direccion;
-//    }
-//
-//    public Persona setDireccion(Direccion direccion) {
-//        this.direccion = direccion;
-//        return this;
-//    }
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public Persona setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+        return this;
+    }
 
     // <<<<<<<METODOS IMPRESION>>>>>>>
 
@@ -93,6 +97,8 @@ public abstract class Persona {
         //direccion.imprimir();
     }
 
+    // <<<<<<<TO STRING>>>>>>>
+
     @Override
     public String toString() {
         return "Persona{" +
@@ -102,6 +108,31 @@ public abstract class Persona {
                 ", dni='" + dni + '\'' +
                 ", pasaporte='" + pasaporte + '\'' +
                 ", telefono='" + telefono + '\'' +
+                ", direccion=" + direccion +
                 '}';
     }
+
+    // <<<<<<<REGISTRO>>>>>>>
+
+    public void solicitarEmail() {
+        Scanner scanner = new Scanner(System.in);
+        String regex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        boolean emailValido = false;
+
+        while (!emailValido) {
+            System.out.print("Ingrese un email válido: ");
+            String input = scanner.nextLine();
+
+            if (input.matches(regex)) {
+                this.email = input;
+                emailValido = true;
+                System.out.println("Email registrado correctamente.");
+            } else {
+                System.out.println("Email inválido. Por favor, intente nuevamente.");
+            }
+        }
+
+    }
+
+
 }
