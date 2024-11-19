@@ -4,6 +4,7 @@ import org.jetsettersv2.collections.ArrayListGeneric;
 import org.jetsettersv2.enums.TurnoEmpleado;
 import org.jetsettersv2.exceptions.ElementoNoEncontradoException;
 import org.jetsettersv2.models.abstracts.Empleado;
+import org.jetsettersv2.models.abstracts.Persona;
 import org.jetsettersv2.models.abstracts.PersonalAereo;
 import org.jetsettersv2.utilities.Fecha;
 
@@ -16,6 +17,9 @@ public class Administrador extends Empleado {
     private ArrayListGeneric<Reserva> gestionReservas;
     private ArrayListGeneric<UsuarioCliente> gestionUsuarios;
     private ArrayListGeneric<Pasajero> gestionPasajeros;
+    private ArrayListGeneric<Ruta> gestionRutas;
+    private ArrayListGeneric <Avion> gestionAviones;
+
 
     public Administrador() {
     }
@@ -67,6 +71,15 @@ public class Administrador extends Empleado {
         return this;
     }
 
+    public ArrayListGeneric<Ruta> getGestionRutas() {
+        return gestionRutas;
+    }
+
+    public Administrador gestionRutas(ArrayListGeneric<Ruta> gestionRutas) {
+        this.gestionRutas = gestionRutas;
+        return this;
+    }
+
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<METODOS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     // <<<<<<<VER COLLECTION>>>>>>>
@@ -87,14 +100,18 @@ public class Administrador extends Empleado {
         return gestionPasajeros.getLista();
     }
 
+    public List <Ruta> verCollectionRuta(){return gestionRutas.getLista();}
+
+    public List <Avion> verCollectionAvion () { return gestionAviones.getLista();}
+
+
+//    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<VUELOS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     // <<<<<<<AÑADIR VUELOS>>>>>>>
 
     public void añadirVuelosCollection(Vuelo vuelo) {
         gestionVuelos.agregarElemento(vuelo);
-
     }
-
-
 
     // <<<<<<<REPROGRAMAR VUELOS>>>>>>>
 
@@ -118,7 +135,7 @@ public class Administrador extends Empleado {
 
     // <<<<<<<ASIGNAR TRIPULACION A UN VUELO>>>>>>>
 
-//    public void asignarTripulacionVuelo(String idVuelo, PersonalAereo tripulante) throws ElementoNoEncontradoException {
+//    public void asignarTripulacionVuelo(String idVuelo, Persona tripulante) throws ElementoNoEncontradoException {
 //        RegistroDeVuelo vuelo = null;
 //
 //        for (RegistroDeVuelo v : gestionVuelos.getLista()) {
@@ -143,6 +160,31 @@ public class Administrador extends Empleado {
 //        System.out.println("El tripulante " + tripulante.getNombre() + " ha sido asignado al vuelo con ID " + idVuelo);
 //    }
 
+
+    //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<RUTA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // <<<<<<<AÑADIR RUTA>>>>>>>
+    public void añadirRutasCollection (Ruta ruta) {
+        gestionRutas.agregarElemento(ruta);
+    }
+
+
+
+
+
+    //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<FLOTA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PERSONAL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //    <<<<<<<<<<<<<<<<ELIMINAR TRIPULANTE>>>>>>>>>>>>>>>>
+
+
+
+
+    //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ADMINISTRADOR>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //    <<<<<<<<<<<<<<<<ASIGNAR / ELIMINAR ADMINISTRADOR>>>>>>>>>>>>>>>>>
 
 
     public void imprimir ()
