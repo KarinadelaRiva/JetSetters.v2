@@ -15,11 +15,15 @@ public abstract class Persona {
     private String telefono;
     private Direccion direccion;
     private String email;
-    private String contrasenia;
+    private String password;
+
+    Scanner scanner = new Scanner(System.in);
 
 
     public Persona() {
     }
+
+    // <<<<<<<GETTERS Y SETTERS>>>>>>>
 
     public String getIdPersona() {
         return idPersona;
@@ -79,14 +83,32 @@ public abstract class Persona {
         return direccion;
     }
 
-    public Persona setDireccion(Direccion direccion) {
+    public Persona direccion(Direccion direccion) {
         this.direccion = direccion;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Persona email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Persona password(String password) {
+        this.password = password;
         return this;
     }
 
     // <<<<<<<METODOS IMPRESION>>>>>>>
 
-    public void imprimir(){
+    public void imprimir() {
         System.out.println("ID ..................................: " + this.idPersona);
         System.out.println("Nombre...............................: " + this.nombre);
         System.out.println("Apellido.............................: " + this.apellido);
@@ -114,8 +136,50 @@ public abstract class Persona {
 
     // <<<<<<<REGISTRO>>>>>>>
 
+    public void solicitarNombre() {
+        System.out.print("Ingrese el nombre: ");
+        this.nombre = scanner.nextLine().trim();
+    }
+
+    public void solicitarApellido() {
+        System.out.print("Ingrese el apellido: ");
+        this.apellido = scanner.nextLine().trim();
+    }
+
+    public void solicitarDni() {
+        System.out.print("Ingrese el DNI (solo números): ");
+        String input = scanner.nextLine().trim();
+        if (input.matches("\\d+")) {
+            this.dni = input;
+        } else {
+            System.out.println("DNI inválido. Intente nuevamente.");
+            solicitarDni();
+        }
+    }
+
+    public void solicitarPasaporte() {
+        System.out.print("Ingrese el número de pasaporte: ");
+        this.pasaporte = scanner.nextLine().trim();
+    }
+
+    public void solicitarTelefono() {
+        System.out.print("Ingrese el teléfono (incluyendo código de área): ");
+        this.telefono = scanner.nextLine().trim();
+    }
+
+//    public void solicitarDireccion() {
+//        Direccion nuevaDireccion = new Direccion();
+//        nuevaDireccion.solicitarCalle();
+//        nuevaDireccion.solicitarNumero();
+//        nuevaDireccion.solicitarCiudad();
+//        nuevaDireccion.solicitarCodigoPostal();
+//        nuevaDireccion.solicitarPais();
+//        this.direccion = nuevaDireccion;
+//    }
+
+
     public void solicitarEmail() {
-        Scanner scanner = new Scanner(System.in);
+
         String regex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
         boolean emailValido = false;
 
@@ -133,6 +197,59 @@ public abstract class Persona {
         }
 
     }
+
+    public void solicitarPassword() {
+
+        // Requisitos de la contraseña:
+        // Al menos una letra mayúscula, una minúscula, un número, un carácter especial y longitud mínima de 8
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        boolean contraseñaValida = false;
+
+        while (!contraseñaValida) {
+            System.out.print("Ingrese una contraseña válida (mínimo 8 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial): ");
+            String input = scanner.nextLine();
+
+            if (input.matches(regex)) {
+                this.password = input;
+                contraseñaValida = true;
+                System.out.println("Contraseña registrada correctamente.");
+            } else {
+                System.out.println("Contraseña inválida. Por favor, asegúrese de cumplir los requisitos.");
+            }
+        }
+    }
+//        // <<<<<<<INICIO DE SESION>>>>>>>
+//      cambiar por arreglo jason  private ArrayList<Persona> personas; // Lista de personas registradas
+
+//    public Persona iniciarSesion() throws LoginException {
+//            instanciar arreglo q usa clase json
+
+//        System.out.print("Ingrese su email: ");
+//        String email = scanner.nextLine().trim();
+//
+//        // Buscar persona por email
+//        Persona personaEncontrada = null;
+//        for (Persona p : personas) {
+//            if (p.getEmail().equals(email)) {
+//                personaEncontrada = p;
+//                break;
+//            }
+//        }
+//
+//        if (personaEncontrada == null) {
+//            throw new LoginException("El email ingresado no está registrado.");
+//        }
+//
+//        System.out.print("Ingrese su contraseña: ");
+//        String password = scanner.nextLine().trim();
+//
+//        if (!personaEncontrada.getPassword().equals(password)) {
+//            throw new LoginException("La contraseña es incorrecta.");
+//        }
+//
+//        System.out.println("Inicio de sesión exitoso. Bienvenido, " + personaEncontrada.getNombre() + "!");
+//        return personaEncontrada; // Devuelve la persona logueada
+//    }
 
 
 }
